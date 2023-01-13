@@ -1,24 +1,30 @@
-pub enum Path {
+use std::path::Component;
+
+pub enum CommonPath {
     Root,
     Home,
     Desktop,
     CurrentProject,
 }
 
-
-impl Path {
-    fn get(&self) -> String {
-        "1".to_string()
+impl CommonPath {
+    fn get(&self) -> &str {
+        match self {
+            CommonPath::Root => Component::RootDir.as_os_str().to_str().unwrap(),
+            // Path::Home => {}
+            // Path::Desktop => {}
+            // Path::CurrentProject => {}
+            _ => "1",
+        }
     }
 }
 
-
 #[cfg(test)]
 mod tests {
-    use crate::Path;
+    use crate::CommonPath;
 
     #[test]
     fn test_get_path() {
-        assert_eq!("1".to_string(), Path::Home.get());
+        assert_eq!("1".to_string(), CommonPath::Root.get());
     }
 }
