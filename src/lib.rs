@@ -13,7 +13,7 @@ impl CommonPath {
             CommonPath::Root => Component::RootDir.as_os_str().to_str().unwrap(),
             // Path::Home => {}
             // Path::Desktop => {}
-            // Path::CurrentProject => {}
+            CommonPath::CurrentProject => Component::CurDir.as_os_str().to_str().unwrap(),
             _ => "1",
         }
     }
@@ -24,7 +24,12 @@ mod tests {
     use crate::CommonPath;
 
     #[test]
-    fn test_get_path() {
-        assert_eq!("1".to_string(), CommonPath::Root.get());
+    fn test_get__root_path() {
+        assert_eq!("/", CommonPath::Root.get());
+    }
+
+#[test]
+    fn test_get__current_path() {
+        assert_eq!("/", CommonPath::CurrentProject.get());
     }
 }
