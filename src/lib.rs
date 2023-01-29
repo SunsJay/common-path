@@ -15,7 +15,9 @@ impl CommonPath {
             CommonPath::Home => {
                 Some("home")
             }
-            // Path::Desktop => {}
+            Path::Desktop => {
+                Some("Desktop")
+            }
             CommonPath::CurrentProject => Component::CurDir.as_os_str().to_str(),
             _ => None,
         }
